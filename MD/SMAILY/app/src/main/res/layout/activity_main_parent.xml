@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/body"
+    tools:context=".ui.parent.MainParentActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/block_link"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@drawable/rounded_background"
+        android:elevation="15dp"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/iv_logo1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/logo"
+            android:contentDescription="@string/image_name"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_name_fitur1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/block_link"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/iv_logo1"
+            app:layout_constraintTop_toTopOf="@+id/iv_logo1" />
+
+        <TextView
+            android:id="@+id/tv_desc_fitur1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/desc_fitur1"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="@+id/tv_name_fitur1"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name_fitur1" />
+
+        <ImageView
+            android:id="@+id/iv_next1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:contentDescription="@string/image_name"
+            android:src="@drawable/ic_baseline_navigate_next_24"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_desc_fitur1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_name_fitur1" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/block_app"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/rounded_background"
+        android:clickable="true"
+        android:elevation="15dp"
+        android:focusable="true"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/block_link">
+
+        <ImageView
+            android:id="@+id/iv_logo2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:contentDescription="@string/image_name"
+            android:src="@drawable/logo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_name_fitur2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/block_app"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/iv_logo2"
+            app:layout_constraintTop_toTopOf="@+id/iv_logo2" />
+
+        <TextView
+            android:id="@+id/tv_desc_fitur2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/desc_fitur2"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="@+id/tv_name_fitur2"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name_fitur2" />
+
+        <ImageView
+            android:id="@+id/iv_next2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:contentDescription="@string/image_name"
+            android:src="@drawable/ic_baseline_navigate_next_24"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_desc_fitur2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_name_fitur2" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

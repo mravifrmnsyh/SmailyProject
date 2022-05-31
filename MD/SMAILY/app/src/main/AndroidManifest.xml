@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.capstone.smaily" >
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_smaily"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_smaily_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.SMAILY" >
+        <activity
+            android:name=".ui.parent.MainParentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.parent.TokenParentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.parent.RegisterParentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.parent.LoginParentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.children.WebviewChildrenActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.children.MainChildrenActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.children.TokenChildActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.main.SplashScreenActivity"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.main.MainActivity"
+            android:exported="false" />
+    </application>
+
+</manifest>

@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">SMAILY</string>
+    <string name="iv_logo">ImageView Logo</string>
+    <string name="desc_main">Smaily is a parenting control app that helps parents to monitor their children and control their smartphone.</string>
+    <string name="children">Children</string>
+    <string name="parent">Parent</string>
+    <string name="token">Token</string>
+    <string name="desc_token_child">Input token from parent device</string>
+    <string name="enter">Enter</string>
+    <string name="image_name">Image Name</string>
+    <string name="welcome">Welcome</string>
+    <string name="desc_main_child">This device is connected to the parent device with the code:</string>
+    <string name="thanks">Thank You</string>
+    <string name="copyright">\@smaily</string>
+    <string name="double_press_to_exit">Press again to exit</string>
+    <string name="brows">Browsing</string>
+    <string name="children_brows">Children - Browser</string>
+    <string name="login">Login</string>
+    <string name="eror_email">Invalid email address</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="sixLetter">Minimum 6 character</string>
+    <string name="havent_account">Havent account?</string>
+    <string name="register">Register</string>
+    <string name="email">Email</string>
+    <string name="terms">By registering you agree to the terms and conditions</string>
+    <string name="must_be_filled">Must be filled</string>
+    <string name="desc_token_parent">This token is useful for connecting the child\'s device to the parent.</string>
+    <string name="bars">Bar loading</string>
+    <string name="block_link">Block link</string>
+    <string name="desc_fitur1">Set url that can\'t be opened by child</string>
+    <string name="desc_fitur2">Set apps that kids can\'t open</string>
+    <string name="block_app">Block app</string>
+    <string name="logout">Logout</string>
+</resources>
