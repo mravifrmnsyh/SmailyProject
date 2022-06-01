@@ -32,4 +32,6 @@
     <string name="desc_fitur2">Set apps that kids can\'t open</string>
     <string name="block_app">Block app</string>
     <string name="logout">Logout</string>
+    <string name="add_link">Add link</string>
+    <string name="url_link">Link url</string>
 </resources>

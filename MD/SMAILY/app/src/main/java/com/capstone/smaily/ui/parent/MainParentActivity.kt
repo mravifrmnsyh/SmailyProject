@@ -1,5 +1,6 @@
 package com.capstone.smaily.ui.parent
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -20,7 +21,7 @@ class MainParentActivity : AppCompatActivity() {
         supportActionBar?.title = resources.getString(R.string.parent)
 
         binding.apply {
-            blockLink.setOnClickListener{ showToast("block link") }
+            blockLink.setOnClickListener{ startActivity(Intent(this@MainParentActivity, BlokLinkParentActivity::class.java)) }
             blockApp.setOnClickListener { showToast("block app") }
         }
     }

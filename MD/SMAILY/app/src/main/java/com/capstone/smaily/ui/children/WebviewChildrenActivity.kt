@@ -34,17 +34,17 @@ class WebviewChildrenActivity : AppCompatActivity() {
                     if (url != null){
                         urlChange = url
                     }
-                    showToast(urlChange)
+                    //block url
+                    if (urlChange.equals("https://m.facebook.com/")){
+                        showToast("this url is block")
+                        webView.loadUrl("https://twitter.com/")
+                    }
+//                    showToast(urlChange)
                     Log.d("Url", urlChange)
                 }
             }
 
-            //block url(belum bisa)
-            if (urlChange.equals("https://m.facebook.com/")){
-                showToast("this url is block")
-            } else {
-                webView.loadUrl(urlChange)
-            }
+            webView.loadUrl(urlChange)
         }
     }
 
