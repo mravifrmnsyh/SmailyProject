@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Toast
 import com.capstone.smaily.R
 import com.capstone.smaily.databinding.ActivityMainChildrenBinding
+import com.capstone.smaily.preferences.ChildrenLoginPref
 import kotlin.system.exitProcess
 
 class MainChildrenActivity : AppCompatActivity() {
@@ -20,7 +21,11 @@ class MainChildrenActivity : AppCompatActivity() {
 
         supportActionBar?.title = resources.getString(R.string.children)
 
-        binding.btnBrowsing.setOnClickListener { startActivity(Intent(this, WebviewChildrenActivity::class.java)) }
+        binding.apply {
+            val access = ChildrenLoginPref(this@MainChildrenActivity).getUser().message
+            tvTokenChild.text = access
+            btnBrowsing.setOnClickListener { startActivity(Intent(this@MainChildrenActivity, WebviewChildrenActivity::class.java)) }
+        }
     }
 
     override fun onBackPressed() {

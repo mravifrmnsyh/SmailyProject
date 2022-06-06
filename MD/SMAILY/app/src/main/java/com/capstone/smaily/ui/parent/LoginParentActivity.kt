@@ -3,14 +3,20 @@ package com.capstone.smaily.ui.parent
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import com.capstone.smaily.R
 import com.capstone.smaily.databinding.ActivityLoginParentBinding
+import com.capstone.smaily.preferences.ParentLoginPref
+import com.capstone.smaily.viewmodel.MainViewModel
 
 class LoginParentActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginParentBinding
+    private lateinit var loginViewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,6 +25,8 @@ class LoginParentActivity : AppCompatActivity() {
 
         supportActionBar?.title = resources.getString(R.string.parent)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        loginViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
         binding.apply {
             btnLogin.setOnClickListener { login() }
@@ -33,11 +41,11 @@ class LoginParentActivity : AppCompatActivity() {
 
     private fun login(){
         binding.apply {
-            val txtUsername = etUsername.text
+            val txtEmail = etEmail.text.toString()
             val txtPassword = etPassword.text.toString()
 
-            if (txtUsername.isEmpty()){
-                etUsername.error = resources.getString(R.string.must_be_filled)
+            if (txtEmail.isEmpty()){
+                etEmail.error = resources.getString(R.string.must_be_filled)
                 return
             }
             if (txtPassword.isEmpty()){
@@ -45,9 +53,28 @@ class LoginParentActivity : AppCompatActivity() {
                 return
             }
             //code untuk input ke db, set preferences, dan langsung get token
-
+            with(loginViewModel){
+                loginParent(txtEmail, txtPassword)
+                getParentLogin().observe(this@LoginParentActivity) {
+                    val parentLoginPref = ParentLoginPref(this@LoginParentActivity)
+                    val id = it.id
+                    val name = it.name
+                    val email = it.email
+                    val accessToken = it.accessToken
+                    parentLoginPref.setUser(id, name, email, accessToken)
+                }
+                isLoading.observe(this@LoginParentActivity) { showLoading(it) }
+                message.observe(this@LoginParentActivity) { showToast(it) }
+                isIntent.observe(this@LoginParentActivity) {
+                    if (it){
+                        Handler(Looper.getMainLooper()).postDelayed({
+                            startActivity(Intent(this@LoginParentActivity, TokenParentActivity::class.java))
+                            finish()
+                        }, 2000)
+                    }
+                }
+            }
             //end code
-            startActivity(Intent(this@LoginParentActivity, TokenParentActivity::class.java))
         }
     }
 

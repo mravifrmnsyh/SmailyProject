@@ -3,11 +3,15 @@ package com.capstone.smaily.ui.parent
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import com.capstone.smaily.R
 import com.capstone.smaily.databinding.ActivityMainParentBinding
+import com.capstone.smaily.preferences.ParentLoginPref
+import com.capstone.smaily.ui.main.MainActivity
 
 class MainParentActivity : AppCompatActivity() {
 
@@ -35,10 +39,13 @@ class MainParentActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.ic_logout -> {
-//                showToast(resources.getString(R.string.setting))
-//                Handler(Looper.getMainLooper()).postDelayed({
-//                    startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
-//                }, 2000)
+                showToast(resources.getString(R.string.logout))
+                val parentLoginPref = ParentLoginPref(this)
+                parentLoginPref.delUser()
+                Handler(Looper.getMainLooper()).postDelayed({
+                    startActivity(Intent(this, MainActivity::class.java))
+                }, 2000)
+                finish()
 
                 //code delete preferences
 

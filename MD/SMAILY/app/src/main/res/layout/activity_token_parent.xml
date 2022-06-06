@@ -24,26 +24,41 @@
         android:id="@+id/tv_token"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/rounded_edittext"
         android:elevation="15dp"
         android:padding="5dp"
+        android:textSize="18dp"
         android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/tv_title_token"
-        app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintStart_toStartOf="@+id/tv_title_token"
-        app:layout_constraintTop_toBottomOf="@+id/tv_title_token" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_desc_token" />
 
     <TextView
         android:id="@+id/tv_desc_token"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
+        android:textAlignment="center"
         android:text="@string/desc_token_parent"
         android:textColor="@color/black"
         android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title_token" />
+
+    <Button
+        android:id="@+id/btn_token"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/get_token"
+        android:textSize="18dp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_token" />
@@ -52,13 +67,13 @@
         android:id="@+id/btn_enter"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginTop="32dp"
         android:text="@string/enter"
         android:textSize="18dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_desc_token" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_token" />
 
     <ProgressBar
         android:id="@+id/bars"
