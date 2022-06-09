@@ -22,18 +22,35 @@ import kotlin.system.exitProcess
 class MainParentActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainParentBinding
-    //optional
     private lateinit var mainViewModel: MainViewModel
     private var backPress: Long = 0
+
+    private lateinit var token: String
+    private lateinit var idParent: String
+    private lateinit var name: String
+    private lateinit var email: String
+    private lateinit var idChildren: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainParentBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        supportActionBar?.title = resources.getString(R.string.parent)
 
         mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+
+        idParent = ParentLoginPref(this).getUser().id.toString()
+        token = ParentLoginPref(this).getUser().accesstoken.toString()
+        with(mainViewModel) {
+            profilParent(idParent, token)
+            getProfilParent().observe(this@MainParentActivity) {
+                val parenLoginPref = ParentLoginPref(this@MainParentActivity)
+                name = it.name
+                email = it.email
+                idChildren = it.children
+                parenLoginPref.setIdChild(it.children)
+            }
+        }
         binding.apply {
             blockLink.setOnClickListener{ startActivity(Intent(this@MainParentActivity, BlokLinkParentActivity::class.java)) }
             blockApp.setOnClickListener { showToast("block app") }
@@ -50,20 +67,8 @@ class MainParentActivity : AppCompatActivity() {
         when (item.itemId) {
             R.id.ic_profil -> {
                 showToast(resources.getString(R.string.profil))
-                val id = ParentLoginPref(this).getUser().id.toString()
-                val token = ParentLoginPref(this).getUser().accesstoken.toString()
-                mainViewModel.profilParent(id, token)
-                mainViewModel.message.observe(this) { showToast(it) }
-                mainViewModel.getProfilParent().observe(this) {
-                    val parentLoginPref = ParentLoginPref(this)
-                    val id = it.id
-                    val name = it.name
-                    val email = it.email
-                    val children = it.children
-                    parentLoginPref.setIdChild(children)
-                    val parentProfil = StringBuilder().append("Id : " + id,"\nName : "+ name, "\nEmail : "+ email,"\nChildren : "+ children)
-                    showAlertDialog("Profil", parentProfil.toString())
-                }
+                val parentProfil = StringBuilder().append("Id : " + idParent,"\nName : "+ name, "\nEmail : "+ email,"\nChildren : "+ idChildren)
+                showAlertDialog("Profil", parentProfil.toString())
             }
             R.id.ic_logout -> {
                 showToast(resources.getString(R.string.logout))

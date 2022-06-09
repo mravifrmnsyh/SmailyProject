@@ -37,15 +37,15 @@ class TokenParentActivity : AppCompatActivity() {
             btnToken.setOnClickListener { getToken(id, token)}
             btnEnter.setOnClickListener {
                 tokenViewModel.isIntent.observe(this@TokenParentActivity) {
-                    if (it) {
-                        Handler(Looper.getMainLooper()).postDelayed({
-                            startActivity(Intent(this@TokenParentActivity, MainParentActivity::class.java))
-                            finish()
-                        }, 2000)
+                        if (it) {
+                            Handler(Looper.getMainLooper()).postDelayed({
+                                startActivity(Intent(this@TokenParentActivity, MainParentActivity::class.java))
+                                finish()
+                            }, 2000)
+                        }
                     }
                 }
             }
-        }
     }
 
     override fun onSupportNavigateUp(): Boolean {

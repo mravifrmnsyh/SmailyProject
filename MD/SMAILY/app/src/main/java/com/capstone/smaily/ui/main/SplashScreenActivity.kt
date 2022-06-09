@@ -20,6 +20,8 @@ class SplashScreenActivity : AppCompatActivity() {
         binding = ActivitySplashScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.hide()
+
         val childLoginPref = ChildrenLoginPref(this).getUser().accessToken
         val parentLoginPref = ParentLoginPref(this).getUser().accesstoken
 

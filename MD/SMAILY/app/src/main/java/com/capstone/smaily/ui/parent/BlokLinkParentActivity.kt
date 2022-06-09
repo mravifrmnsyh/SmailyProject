@@ -61,7 +61,7 @@ class BlokLinkParentActivity : AppCompatActivity() {
                     .setIcon(R.drawable.ic_baseline_announcement_24)
                     .setCancelable(true)
                     .setTitle("Announcement")
-                    .setMessage("To add the url link, please use slash at last url, example : https://m.facebook.com/ ")
+                    .setMessage("To add the url link, please just use format hostname, example : m.facebook.com")
                     .setPositiveButton("Ok") { dialog, _ -> dialog.dismiss()}
                 val alertDialog = alertDialogBuilder.create()
                 alertDialog.show()
