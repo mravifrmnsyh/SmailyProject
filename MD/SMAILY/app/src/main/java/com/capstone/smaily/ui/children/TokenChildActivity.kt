@@ -7,12 +7,10 @@ import android.os.Handler
 import android.os.Looper
 import android.view.View
 import android.widget.Toast
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.capstone.smaily.R
 import com.capstone.smaily.databinding.ActivityTokenChildBinding
 import com.capstone.smaily.preferences.ChildrenLoginPref
-import com.capstone.smaily.ui.parent.TokenParentActivity
 import com.capstone.smaily.viewmodel.MainViewModel
 
 class TokenChildActivity : AppCompatActivity() {

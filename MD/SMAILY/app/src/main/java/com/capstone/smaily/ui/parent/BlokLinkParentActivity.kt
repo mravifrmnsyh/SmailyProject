@@ -86,7 +86,6 @@ class BlokLinkParentActivity : AppCompatActivity() {
         adapterViewModel.url.observe(this, {
             adapter.submitList(it)
         })
-//        deleteUrl()
     }
 
     private fun showAlertDialog(title: String){
@@ -118,17 +117,4 @@ class BlokLinkParentActivity : AppCompatActivity() {
         val alertDialog = alertDialogBuilder.create()
         alertDialog.show()
     }
-
-//    fun deleteUrl(){
-//        with(blockUrlViewModel) {
-//            val url = intent.getStringExtra("url").toString()
-//            if (url.isNotEmpty()){
-//                val id = ParentLoginPref(this@BlokLinkParentActivity).getUser().id.toString()
-//                val accessToken = ParentLoginPref(this@BlokLinkParentActivity).getUser().accesstoken.toString()
-//                deleteDataUrl(id, url, accessToken)
-//                message.observe(this@BlokLinkParentActivity) { showToast(it) }
-//                getData()
-//            }
-//        }
-//    }
 }

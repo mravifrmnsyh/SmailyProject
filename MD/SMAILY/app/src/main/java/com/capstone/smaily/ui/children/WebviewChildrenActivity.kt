@@ -5,21 +5,14 @@ import android.os.Bundle
 import android.util.Log
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import android.widget.EditText
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
 import com.capstone.smaily.R
 import com.capstone.smaily.databinding.ActivityWebviewChildrenBinding
 import com.capstone.smaily.preferences.ChildrenLoginPref
-import com.capstone.smaily.preferences.ParentLoginPref
-import com.capstone.smaily.response.UrlResponse
 import com.capstone.smaily.viewmodel.MainViewModel
-import com.capstone.smaily.viewmodel.UrlViewModel
-import com.capstone.smaily.viewmodel.ViewModelFactory
 import java.net.URL
-import java.util.ArrayList
 
 class WebviewChildrenActivity : AppCompatActivity() {
 
@@ -53,7 +46,6 @@ class WebviewChildrenActivity : AppCompatActivity() {
 
                     var urlHost = URL(urlChange)
                     var host = urlHost.host
-                    Log.d("host", host.toString())
                     //block url
                     val idChild = ChildrenLoginPref(this@WebviewChildrenActivity).getUser().childrenId.toString()
                     val accessToken = ChildrenLoginPref(this@WebviewChildrenActivity).getUser().accessToken.toString()
@@ -64,7 +56,6 @@ class WebviewChildrenActivity : AppCompatActivity() {
                                 state = true
                             }
                         }
-                        Log.d("state", state.toString())
                     }
                     if (state){
                         val alertDialogBuilder = AlertDialog.Builder(this@WebviewChildrenActivity)
@@ -93,9 +84,5 @@ class WebviewChildrenActivity : AppCompatActivity() {
         } else {
             super.onBackPressed()
         }
-    }
-
-    private fun showToast(message: String){
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 }

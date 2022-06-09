@@ -1,13 +1,9 @@
 package com.capstone.smaily.adapter
 
 import android.content.Context.MODE_PRIVATE
-import android.content.Intent
-import android.content.SharedPreferences
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -15,10 +11,7 @@ import com.capstone.smaily.databinding.ItemLinkBinding
 import com.capstone.smaily.network.ApiConfig
 import com.capstone.smaily.preferences.ParentLoginPref
 import com.capstone.smaily.response.DeleteUrlResponse
-import com.capstone.smaily.response.ParentUrlResponse
 import com.capstone.smaily.response.UrlResponse
-import com.capstone.smaily.ui.parent.BlokLinkParentActivity
-import com.capstone.smaily.viewmodel.MainViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -48,7 +41,6 @@ class UrlAdapter: ListAdapter<UrlResponse, UrlAdapter.UrlViewHolder>(DIFF_CALLBA
                     val url = data.url.toString()
                     val accessToken = loginPref.getString(ParentLoginPref.ACCESSTOKEN, null).toString()
 
-
                     Log.d("url", data.url.toString())
 
                     val viewModel = ApiConfig.getApiService().deleteUrl(id, url, accessToken)
@@ -70,25 +62,8 @@ class UrlAdapter: ListAdapter<UrlResponse, UrlAdapter.UrlViewHolder>(DIFF_CALLBA
                         }
 
                     })
-                    //delete link
-//                    val deletLink = ApiConfig.getApiService().deleteUrl()
                     Log.d("klik", data.url.toString())
                 }
-            }
-            binding.root.setOnClickListener {
-//                val intent = Intent(itemView.context, DetailStoryActivity::class.java)
-//                intent.putExtra(DetailStoryActivity.NAME, data.name)
-//                intent.putExtra(DetailStoryActivity.PHOTOURL, data.photoUrl)
-//                intent.putExtra(DetailStoryActivity.DESCRIPTION, data.description)
-//                intent.putExtra(DetailStoryActivity.DATE, data.createdAt)
-//                val optionsCompat: ActivityOptionsCompat =
-//                    ActivityOptionsCompat.makeSceneTransitionAnimation(
-//                        itemView.context as Activity,
-//                        Pair(binding.imgItemPhoto, "iv_stories"),
-//                        Pair(binding.tvItemUname, "tv_name"),
-//                        Pair(binding.tvItemDate, "tv_date"),
-//                    )
-//                itemView.context.startActivity(intent, optionsCompat.toBundle())
             }
         }
     }

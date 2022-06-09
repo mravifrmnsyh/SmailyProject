@@ -31,7 +31,6 @@ interface ApiService {
         @Path("token") token: String
     ): Call<ChildrenTokenResponse>
 
-    //opsional
     @GET("user/{id}/profile")
     fun getProfilParent(
         @Path("id") id: String,
@@ -58,13 +57,6 @@ interface ApiService {
         @Path("id") id: String,
         @Header("x-access-token") token: String
     ): Call<List<UrlResponse>>
-
-//    @DELETE("user/{id}/lock/url")
-//    fun deleteUrl(
-//        @Path("id") id: String,
-//        @Field("url") url : String,
-//        @Header("x-access-token") token: String
-//    ): Call<DeleteUrlResponse>
 
     @FormUrlEncoded
     @HTTP(method = "DELETE", path = "user/{id}/lock/url", hasBody = true)
