@@ -1,9 +1,6 @@
 package com.capstone.smaily.network
 
-import com.capstone.smaily.response.ChildrenTokenResponse
-import com.capstone.smaily.response.ParentLoginResponse
-import com.capstone.smaily.response.ParentRegisterResponse
-import com.capstone.smaily.response.ParentTokenResponse
+import com.capstone.smaily.response.*
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -23,7 +20,7 @@ interface ApiService {
         @Field("password") password: String
     ): Call<ParentLoginResponse>
 
-    @POST("auth/{id}/registerChildren")
+    @POST("auth/register/{id}/children")
     fun getTokenParent(
         @Path("id") id : String,
         @Header("x-access-token") token: String
@@ -33,4 +30,47 @@ interface ApiService {
     fun tokenChildren(
         @Path("token") token: String
     ): Call<ChildrenTokenResponse>
+
+    //opsional
+    @GET("user/{id}/profile")
+    fun getProfilParent(
+        @Path("id") id: String,
+        @Header("x-access-token") token: String
+    ): Call<ParentProfileResponse>
+
+    @FormUrlEncoded
+    @PUT("user/{id}/lock/url")
+    fun setBlockUrl(
+        @Path("id") id : String,
+        @Field("url") url : String,
+        @Field("lock") lock : Boolean,
+        @Header("x-access-token") token: String
+    ): Call<ParentUrlResponse>
+
+    @GET("children/{id}/lock/url")
+    suspend fun getBlockUrl(
+        @Path("id") id: String,
+        @Header("x-access-token") token: String
+    ): List<UrlResponse>
+
+    @GET("children/{id}/lock/url")
+    fun getBlockUrlChild(
+        @Path("id") id: String,
+        @Header("x-access-token") token: String
+    ): Call<List<UrlResponse>>
+
+//    @DELETE("user/{id}/lock/url")
+//    fun deleteUrl(
+//        @Path("id") id: String,
+//        @Field("url") url : String,
+//        @Header("x-access-token") token: String
+//    ): Call<DeleteUrlResponse>
+
+    @FormUrlEncoded
+    @HTTP(method = "DELETE", path = "user/{id}/lock/url", hasBody = true)
+    fun deleteUrl(
+        @Path("id") id : String,
+        @Field("url") url : String,
+        @Header("x-access-token") token: String
+    ): Call<DeleteUrlResponse>
 }

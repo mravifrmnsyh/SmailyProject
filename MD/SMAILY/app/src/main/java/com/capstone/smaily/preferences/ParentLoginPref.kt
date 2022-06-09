@@ -14,12 +14,17 @@ class ParentLoginPref(context: Context) {
         editor.putString(ACCESSTOKEN, accessToken)
         editor.apply()
     }
+    fun setIdChild(idChild: String) {
+        editor.putString(IDCHILDREN, idChild)
+        editor.apply()
+    }
     fun getUser(): ParentLoginModel{
         val model = ParentLoginModel()
         model.id = pref.getString(ID, "").toString()
         model.name = pref.getString(NAME, "").toString()
         model.email = pref.getString(EMAIL, "").toString()
         model.accesstoken = pref.getString(ACCESSTOKEN, "").toString()
+        model.idChildren = pref.getString(IDCHILDREN, "").toString()
         return model
     }
     fun delUser() {
@@ -33,5 +38,6 @@ class ParentLoginPref(context: Context) {
         const val NAME = "name"
         const val EMAIL = "email"
         const val ACCESSTOKEN = "access_token"
+        const val IDCHILDREN = "id_children"
     }
 }

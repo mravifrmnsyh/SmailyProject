@@ -5,14 +5,27 @@ import android.os.Bundle
 import android.util.Log
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.EditText
 import android.widget.Toast
+import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
+import androidx.lifecycle.ViewModelProvider
 import com.capstone.smaily.R
 import com.capstone.smaily.databinding.ActivityWebviewChildrenBinding
+import com.capstone.smaily.preferences.ChildrenLoginPref
+import com.capstone.smaily.preferences.ParentLoginPref
+import com.capstone.smaily.response.UrlResponse
+import com.capstone.smaily.viewmodel.MainViewModel
+import com.capstone.smaily.viewmodel.UrlViewModel
+import com.capstone.smaily.viewmodel.ViewModelFactory
+import java.net.URL
+import java.util.ArrayList
 
 class WebviewChildrenActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityWebviewChildrenBinding
     private var urlChange: String = "https://www.google.com"
+    private lateinit var urlViewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,6 +33,8 @@ class WebviewChildrenActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         supportActionBar?.title = resources.getString(R.string.children_brows)
+
+        urlViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
         binding.apply {
             with(webView.settings){
@@ -30,20 +45,44 @@ class WebviewChildrenActivity : AppCompatActivity() {
 
             webView.webViewClient = object:WebViewClient(){
                 override fun onPageFinished(view: WebView?, url: String?) {
-//                    super.onPageFinished(view, url)
+                    var state = false
                     if (url != null){
                         urlChange = url
+                        Log.d("LisUrl", url.toString())
                     }
+
+                    var urlHost = URL(urlChange)
+                    var host = urlHost.host
+                    Log.d("host", host.toString())
                     //block url
-                    if (urlChange.equals("https://m.facebook.com/")){
-                        showToast("this url is block")
-                        webView.loadUrl("https://twitter.com/")
+                    val idChild = ChildrenLoginPref(this@WebviewChildrenActivity).getUser().childrenId.toString()
+                    val accessToken = ChildrenLoginPref(this@WebviewChildrenActivity).getUser().accessToken.toString()
+                    urlViewModel.dataUrlChildren(idChild, accessToken)
+                    urlViewModel.getDataUrl().observe(this@WebviewChildrenActivity) {
+                        for (list in it){
+                            if (host.equals(list.url)){
+                                state = true
+                            }
+                        }
+                        Log.d("state", state.toString())
                     }
-//                    showToast(urlChange)
-                    Log.d("Url", urlChange)
+                    if (state){
+                        val alertDialogBuilder = AlertDialog.Builder(this@WebviewChildrenActivity)
+
+                        alertDialogBuilder
+                            .setTitle("Sorry")
+                            .setMessage("Opss, this url ${host} is block with your parent!!")
+                            .setCancelable(false)
+                            .setPositiveButton("Ok") { dialog, _ ->
+                                onBackPressed()
+                                dialog.dismiss()
+                            }
+                        val alertDialog = alertDialogBuilder.create()
+                        alertDialog.show()
+                    }
+                    Log.d("state2", state.toString())
                 }
             }
-
             webView.loadUrl(urlChange)
         }
     }

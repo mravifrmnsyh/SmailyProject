@@ -35,4 +35,6 @@
     <string name="add_link">Add link</string>
     <string name="url_link">Link url</string>
     <string name="get_token">Get Token</string>
+    <string name="profil">Profil</string>
+    <string name="announcement">Announcement</string>
 </resources>

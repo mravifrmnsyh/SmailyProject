@@ -4,74 +4,113 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/body"
     tools:context=".ui.main.MainActivity">
 
-    <TextView
-        android:id="@+id/tv_smaily"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout1"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:text="@string/app_name"
-        android:textColor="@color/black"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:elevation="20dp"
+        android:background="@drawable/background_title_main"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ImageView
-        android:id="@+id/iv_logo"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        <TextView
+            android:id="@+id/tv_smaily"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/app_name"
+            android:textColor="@color/white"
+            android:textSize="35sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
-        android:src="@drawable/logo"
-        android:contentDescription="@string/iv_logo"
-        app:layout_constraintEnd_toEndOf="@+id/tv_smaily"
-        app:layout_constraintStart_toStartOf="@+id/tv_smaily"
-        app:layout_constraintTop_toBottomOf="@+id/tv_smaily" />
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/rounded_background"
+        android:elevation="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout1">
 
-    <TextView
-        android:id="@+id/tv_desc_main"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:maxWidth="300dp"
-        android:text="@string/desc_main"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="@+id/iv_logo"
-        app:layout_constraintStart_toStartOf="@+id/iv_logo"
-        app:layout_constraintTop_toBottomOf="@+id/iv_logo" />
+        <ImageView
+            android:id="@+id/iv_logo"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="16dp"
+            android:contentDescription="@string/iv_logo"
+            android:src="@drawable/logo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btn_children"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:background="@drawable/rounded_button"
-        android:text="@string/children"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_batas"
-        app:layout_constraintEnd_toStartOf="@+id/tv_batas"
-        app:layout_constraintTop_toTopOf="@+id/tv_batas" />
+        <TextView
+            android:id="@+id/tv_desc_main"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:maxWidth="300dp"
+            android:text="@string/desc_main"
+            android:textAlignment="center"
+            android:textColor="@color/orange2"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@+id/iv_logo"
+            app:layout_constraintStart_toStartOf="@+id/iv_logo"
+            app:layout_constraintTop_toBottomOf="@+id/iv_logo" />
 
-    <TextView
-        android:id="@+id/tv_batas"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        app:layout_constraintEnd_toEndOf="@+id/tv_desc_main"
-        app:layout_constraintStart_toStartOf="@+id/tv_desc_main"
-        app:layout_constraintTop_toBottomOf="@+id/tv_desc_main" />
+        <Button
+            android:id="@+id/btn_children"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/rounded_button"
+            android:text="@string/children"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_batas"
+            app:layout_constraintEnd_toStartOf="@+id/tv_batas"
+            app:layout_constraintTop_toTopOf="@+id/tv_batas" />
 
-    <Button
-        android:id="@+id/btn_parent"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:background="@drawable/rounded_button"
-        android:text="@string/parent"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_batas"
-        app:layout_constraintStart_toEndOf="@+id/tv_batas"
-        app:layout_constraintTop_toTopOf="@+id/tv_batas" />
+        <TextView
+            android:id="@+id/tv_batas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:layout_marginBottom="32dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/tv_desc_main"
+            app:layout_constraintStart_toStartOf="@+id/tv_desc_main"
+            app:layout_constraintTop_toBottomOf="@+id/tv_desc_main" />
+
+        <Button
+            android:id="@+id/btn_parent"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:background="@drawable/rounded_button"
+            android:text="@string/parent"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_batas"
+            app:layout_constraintStart_toEndOf="@+id/tv_batas"
+            app:layout_constraintTop_toTopOf="@+id/tv_batas" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

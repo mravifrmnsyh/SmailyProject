@@ -50,8 +50,10 @@ class TokenChildActivity : AppCompatActivity() {
                 getTokenChildren().observe(this@TokenChildActivity) {
                     val childrenLoginPref = ChildrenLoginPref(this@TokenChildActivity)
                     val message = it.message
+                    val childId = it.childrenId
+                    val parentId = it.parentId
                     val accessToken = it.accessToken
-                    childrenLoginPref.setUser(message, accessToken)
+                    childrenLoginPref.setUser(message, childId, parentId, accessToken)
                 }
                 isLoading.observe(this@TokenChildActivity){ showLoading(it) }
                 message.observe(this@TokenChildActivity) { showToast(it) }

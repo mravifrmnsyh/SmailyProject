@@ -17,7 +17,6 @@ class TokenParentActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityTokenParentBinding
     private lateinit var tokenViewModel: MainViewModel
-    private lateinit var loginPref: ParentLoginPref
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,35 +26,15 @@ class TokenParentActivity : AppCompatActivity() {
         supportActionBar?.title = resources.getString(R.string.parent)
 
         tokenViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        loginPref = ParentLoginPref(this)
 
         setButton(true)
 
+        val id = ParentLoginPref(this@TokenParentActivity).getUser().id.toString()
+        val token = ParentLoginPref(this@TokenParentActivity).getUser().accesstoken.toString()
+        cekChildren(id, token)
+
         binding.apply {
-            //code untuk get token
-            val id = loginPref.getUser().id.toString()
-            val token = loginPref.getUser().accesstoken.toString()
-//            tokenViewModel.getTokenParent(id, token)
-//            tokenViewModel.isLoading.observe(this@TokenParentActivity) {
-//                showLoading(it)
-//            }
-            //code untuk verif token
-//            tokenViewModel.getTokenParent().observe(this@TokenParentActivity) {
-//                tvToken.text = it.connectToken
-//            }
-            btnToken.setOnClickListener {
-                with(tokenViewModel){
-                    tokenParent(id, token)
-                    isLoading.observe(this@TokenParentActivity) { showLoading(it) }
-                    getTokenParent().observe(this@TokenParentActivity) { tvToken.text = it.connectToken }
-                    message.observe(this@TokenParentActivity) { showToast(it) }
-                    isIntent.observe(this@TokenParentActivity) {
-                        if (it) {
-                            setButton(false)
-                        }
-                    }
-                }
-            }
+            btnToken.setOnClickListener { getToken(id, token)}
             btnEnter.setOnClickListener {
                 tokenViewModel.isIntent.observe(this@TokenParentActivity) {
                     if (it) {
@@ -90,5 +69,27 @@ class TokenParentActivity : AppCompatActivity() {
 
     private fun showLoading(state : Boolean){
         binding.bars.visibility = if(state) View.VISIBLE else View.GONE
+    }
+
+    private fun cekChildren(id: String, accessToken: String){
+        //cek jika idChildren tidak kosong, langsung ke main parent
+        with(tokenViewModel){
+            profilParent(id, accessToken)
+            getProfilParent().observe(this@TokenParentActivity) {
+                if (it.children != null){
+                    startActivity(Intent(this@TokenParentActivity, MainParentActivity::class.java))
+                }
+            }
+        }
+    }
+
+    private fun getToken(id: String, accessToken: String) {
+        with(tokenViewModel){
+            tokenParent(id, accessToken)
+            isLoading.observe(this@TokenParentActivity) { showLoading(it) }
+            getTokenParent().observe(this@TokenParentActivity) { binding.tvToken.text = it.connectToken }
+            message.observe(this@TokenParentActivity) { showToast(it) }
+            isIntent.observe(this@TokenParentActivity) { if (it) setButton(false) }
+        }
     }
 }
