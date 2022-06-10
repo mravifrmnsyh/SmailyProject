@@ -31,7 +31,7 @@ interface ApiService {
         @Path("token") token: String
     ): Call<ChildrenTokenResponse>
 
-    @GET("user/{id}/profile")
+    @GET("user/{id}")
     fun getProfilParent(
         @Path("id") id: String,
         @Header("x-access-token") token: String
