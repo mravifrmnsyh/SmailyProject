@@ -104,8 +104,12 @@ class BlokLinkParentActivity : AppCompatActivity() {
                 val accessToken = ParentLoginPref(this).getUser().accesstoken.toString()
                 blockUrlViewModel.apply {
                     setUrlParent(id, link, true, accessToken)
-                    message.observe(this@BlokLinkParentActivity) { showToast(it) }
-                    getData()
+                    message.observe(this@BlokLinkParentActivity) {
+                        showToast(it)
+                        if (it.equals("Success")){
+                            getData()
+                        }
+                    }
                 }
                 //end code
                 dialog.dismiss()

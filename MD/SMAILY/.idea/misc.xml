@@ -17,6 +17,7 @@
         <entry key="..\:/Dicoding/SMAILY/SMAILY/app/src/main/res/layout/activity_webview_children.xml" value="0.358695652173913" />
         <entry key="..\:/Dicoding/SMAILY/SMAILY/app/src/main/res/layout/rounded_edittext.xml" value="0.358695652173913" />
         <entry key="..\:/Dicoding/SMAILY/SMAILY/app/src/main/res/menu/menu_parent.xml" value="0.14722222222222223" />
+        <entry key="..\:/Github/SmailyProject/MD/SMAILY/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3205" />
         <entry key="..\:/Github/SmailyProject/MD/SMAILY/app/src/main/res/drawable/background_main_desc.xml" value="0.1" />
         <entry key="..\:/Github/SmailyProject/MD/SMAILY/app/src/main/res/drawable/background_title_main.xml" value="0.22" />
         <entry key="..\:/Github/SmailyProject/MD/SMAILY/app/src/main/res/drawable/gradiemt1.xml" value="0.352" />
@@ -27,8 +28,22 @@
         <entry key="..\:/Github/SmailyProject/MD/SMAILY/app/src/main/res/drawable/ic_background_register.xml" value="0.352" />
         <entry key="..\:/Github/SmailyProject/MD/SMAILY/app/src/main/res/drawable/ic_background_token.xml" value="0.352" />
         <entry key="..\:/Github/SmailyProject/MD/SMAILY/app/src/main/res/drawable/ic_background_token_child.xml" value="0.25" />
-        <entry key="..\:/Github/SmailyProject/MD/SMAILY/app/src/main/res/drawable/rounded_background.xml" value="0.352" />
-        <entry key="..\:/Github/SmailyProject/MD/SMAILY/app/src/main/res/drawable/rounded_background_body.xml" value="0.352" />
+        <entry key="..\:/Github/SmailyProject/MD/SMAILY/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.3205" />
+        <entry key="..\:/Github/SmailyProject/MD/SMAILY/app/src/main/res/drawable/ic_baseline_alternate_email_24.xml" value="0.3205" />
+        <entry key="..\:/Github/SmailyProject/MD/SMAILY/app/src/main/res/drawable/ic_baseline_announcement_24.xml" value="0.3205" />
+        <entry key="..\:/Github/SmailyProject/MD/SMAILY/app/src/main/res/drawable/ic_baseline_close_24.xml" value="0.3205" />
+        <entry key="..\:/Github/SmailyProject/MD/SMAILY/app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.3205" />
+        <entry key="..\:/Github/SmailyProject/MD/SMAILY/app/src/main/res/drawable/ic_baseline_error_outline_24.xml" value="0.3205" />
+        <entry key="..\:/Github/SmailyProject/MD/SMAILY/app/src/main/res/drawable/ic_baseline_exit_to_app_24.xml" value="0.3205" />
+        <entry key="..\:/Github/SmailyProject/MD/SMAILY/app/src/main/res/drawable/ic_baseline_html_24.xml" value="0.3205" />
+        <entry key="..\:/Github/SmailyProject/MD/SMAILY/app/src/main/res/drawable/ic_baseline_navigate_next_24.xml" value="0.3205" />
+        <entry key="..\:/Github/SmailyProject/MD/SMAILY/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.3205" />
+        <entry key="..\:/Github/SmailyProject/MD/SMAILY/app/src/main/res/drawable/ic_baseline_vpn_key_24.xml" value="0.3205" />
+        <entry key="..\:/Github/SmailyProject/MD/SMAILY/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3205" />
+        <entry key="..\:/Github/SmailyProject/MD/SMAILY/app/src/main/res/drawable/rounded_background.xml" value="0.33" />
+        <entry key="..\:/Github/SmailyProject/MD/SMAILY/app/src/main/res/drawable/rounded_background_body.xml" value="0.33" />
+        <entry key="..\:/Github/SmailyProject/MD/SMAILY/app/src/main/res/drawable/rounded_button.xml" value="0.3205" />
+        <entry key="..\:/Github/SmailyProject/MD/SMAILY/app/src/main/res/drawable/rounded_edittext.xml" value="0.3205" />
         <entry key="..\:/Github/SmailyProject/MD/SMAILY/app/src/main/res/layout-anydpi/activity_main_children.xml" value="0.36140350877192984" />
         <entry key="..\:/Github/SmailyProject/MD/SMAILY/app/src/main/res/layout-hdpi/activity_main_children.xml" value="0.33" />
         <entry key="..\:/Github/SmailyProject/MD/SMAILY/app/src/main/res/layout-large/activity_login_parent.xml" value="0.8978174603174603" />
@@ -55,6 +70,7 @@
         <entry key="..\:/Github/SmailyProject/MD/SMAILY/app/src/main/res/layout/item_link.xml" value="0.36140350877192984" />
         <entry key="..\:/Github/SmailyProject/MD/SMAILY/app/src/main/res/menu/menu_parent.xml" value="0.36140350877192984" />
         <entry key="..\:/Github/SmailyProject/MD/SMAILY/app/src/main/res/menu/menu_parent_add_link.xml" value="0.36140350877192984" />
+        <entry key="..\:/Github/SmailyProject/MD/SMAILY/app/src/main/res/menu/menu_webview.xml" value="0.31296296296296294" />
         <entry key="..\:/Github/SmailyProject/Mobile Develop/SMAILY/app/src/main/res/layout/activity_splash_screen.xml" value="0.14722222222222223" />
         <entry key="..\:/Github/SmailyProject/Mobile Develop/SMAILY/app/src/main/res/layout/activity_token_parent.xml" value="0.358695652173913" />
       </map>

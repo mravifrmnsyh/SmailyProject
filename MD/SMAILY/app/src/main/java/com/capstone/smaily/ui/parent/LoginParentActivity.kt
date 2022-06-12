@@ -64,7 +64,6 @@ class LoginParentActivity : AppCompatActivity() {
                     parentLoginPref.setUser(id, name, email, accessToken)
                 }
                 isLoading.observe(this@LoginParentActivity) { showLoading(it) }
-                message.observe(this@LoginParentActivity) { showToast(it) }
                 isIntent.observe(this@LoginParentActivity) {
                     if (it){
                         Handler(Looper.getMainLooper()).postDelayed({
@@ -73,6 +72,7 @@ class LoginParentActivity : AppCompatActivity() {
                         }, 2000)
                     }
                 }
+                message.observe(this@LoginParentActivity) { showToast(it) }
             }
             //end code
         }

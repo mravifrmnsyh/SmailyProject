@@ -22,7 +22,7 @@ interface ApiService {
 
     @POST("auth/register/{id}/children")
     fun getTokenParent(
-        @Path("id") id : String,
+        @Path("id") id: String,
         @Header("x-access-token") token: String
     ): Call<ParentTokenResponse>
 
@@ -40,9 +40,9 @@ interface ApiService {
     @FormUrlEncoded
     @PUT("user/{id}/lock/url")
     fun setBlockUrl(
-        @Path("id") id : String,
-        @Field("url") url : String,
-        @Field("lock") lock : Boolean,
+        @Path("id") id: String,
+        @Field("url") url: String,
+        @Field("lock") lock: Boolean,
         @Header("x-access-token") token: String
     ): Call<ParentUrlResponse>
 
@@ -61,8 +61,8 @@ interface ApiService {
     @FormUrlEncoded
     @HTTP(method = "DELETE", path = "user/{id}/lock/url", hasBody = true)
     fun deleteUrl(
-        @Path("id") id : String,
-        @Field("url") url : String,
+        @Path("id") id: String,
+        @Field("url") url: String,
         @Header("x-access-token") token: String
     ): Call<DeleteUrlResponse>
 }

@@ -54,7 +54,6 @@ class TokenChildActivity : AppCompatActivity() {
                     childrenLoginPref.setUser(message, childId, parentId, accessToken)
                 }
                 isLoading.observe(this@TokenChildActivity){ showLoading(it) }
-                message.observe(this@TokenChildActivity) { showToast(it) }
                 isIntent.observe(this@TokenChildActivity) {
                     if (it) {
                         Handler(Looper.getMainLooper()).postDelayed({
@@ -63,6 +62,7 @@ class TokenChildActivity : AppCompatActivity() {
                         }, 2000)
                     }
                 }
+                message.observe(this@TokenChildActivity) { showToast(it) }
             }
             //endvalidate
         }

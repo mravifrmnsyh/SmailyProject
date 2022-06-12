@@ -14,6 +14,7 @@ class ChildrenLoginPref(context: Context) {
         editor.putString(ACCESSTOKEN, accessToken)
         editor.apply()
     }
+
     fun getUser(): ChildrenLoginModel {
         val model = ChildrenLoginModel()
         model.message = pref.getString(MESSAGE, "").toString()
@@ -22,12 +23,13 @@ class ChildrenLoginPref(context: Context) {
         model.accessToken = pref.getString(ACCESSTOKEN, "").toString()
         return model
     }
+
     fun delUser() {
         editor.clear()
         editor.apply()
     }
 
-    companion object{
+    companion object {
         const val CHILDREN_LOGIN = "children_login"
         const val MESSAGE = "message"
         const val CHILDRENID = "children_id"

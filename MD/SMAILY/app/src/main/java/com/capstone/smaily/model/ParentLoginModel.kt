@@ -10,4 +10,4 @@ data class ParentLoginModel(
     var email: String? = null,
     var accesstoken: String? = null,
     var idChildren: String? = null
-): Parcelable
+) : Parcelable

@@ -88,8 +88,8 @@ class TokenParentActivity : AppCompatActivity() {
             tokenParent(id, accessToken)
             isLoading.observe(this@TokenParentActivity) { showLoading(it) }
             getTokenParent().observe(this@TokenParentActivity) { binding.tvToken.text = it.connectToken }
-            message.observe(this@TokenParentActivity) { showToast(it) }
             isIntent.observe(this@TokenParentActivity) { if (it) setButton(false) }
+            message.observe(this@TokenParentActivity) { showToast(it) }
         }
     }
 }

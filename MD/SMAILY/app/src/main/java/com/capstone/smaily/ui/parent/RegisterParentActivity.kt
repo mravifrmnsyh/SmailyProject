@@ -60,7 +60,6 @@ class RegisterParentActivity : AppCompatActivity() {
             with(registerViewModel){
                 registerParent(txtName, txtEmail, txtPassword)
                 isLoading.observe(this@RegisterParentActivity) { showLoading(it) }
-                message.observe(this@RegisterParentActivity) { showToast(it) }
                 isIntent.observe(this@RegisterParentActivity) {
                     if (it){
                         Handler(Looper.getMainLooper()).postDelayed({
@@ -69,6 +68,7 @@ class RegisterParentActivity : AppCompatActivity() {
                         }, 2000)
                     }
                 }
+                message.observe(this@RegisterParentActivity) { showToast(it) }
             }
             //end code
         }

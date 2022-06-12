@@ -1,9 +1,13 @@
 package com.capstone.smaily.adapter
 
 import android.content.Context.MODE_PRIVATE
+import android.content.Intent
+import android.os.Build
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -12,6 +16,7 @@ import com.capstone.smaily.network.ApiConfig
 import com.capstone.smaily.preferences.ParentLoginPref
 import com.capstone.smaily.response.DeleteUrlResponse
 import com.capstone.smaily.response.UrlResponse
+import com.capstone.smaily.ui.parent.MainParentActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -41,17 +46,17 @@ class UrlAdapter: ListAdapter<UrlResponse, UrlAdapter.UrlViewHolder>(DIFF_CALLBA
                     val url = data.url.toString()
                     val accessToken = loginPref.getString(ParentLoginPref.ACCESSTOKEN, null).toString()
 
-                    Log.d("url", data.url.toString())
-
                     val viewModel = ApiConfig.getApiService().deleteUrl(id, url, accessToken)
                     viewModel.enqueue(object : Callback<DeleteUrlResponse> {
+                        @RequiresApi(Build.VERSION_CODES.R)
                         override fun onResponse(
                             call: Call<DeleteUrlResponse>,
                             response: Response<DeleteUrlResponse>
                         ) {
                             if (response.isSuccessful){
                                 Log.d("Succes delete", response.body().toString())
-                                Log.d("Succes delete message", response.message())
+                                Toast.makeText(itemView.context, "Delete success", Toast.LENGTH_LONG).show()
+                                itemView.context.startActivity(Intent(itemView.context, MainParentActivity::class.java))
                             } else{
                                 Log.d("Error delete", response.message())
                             }
@@ -62,7 +67,6 @@ class UrlAdapter: ListAdapter<UrlResponse, UrlAdapter.UrlViewHolder>(DIFF_CALLBA
                         }
 
                     })
-                    Log.d("klik", data.url.toString())
                 }
             }
         }

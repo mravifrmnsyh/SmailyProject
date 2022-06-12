@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.capstone.smaily.network.ApiConfig
 import com.capstone.smaily.response.*
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -23,8 +24,10 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val loginParentResponse = MutableLiveData<ParentLoginResponse>()
     val tokenParentResponse = MutableLiveData<ParentTokenResponse>()
     val tokenChildrenResponse = MutableLiveData<ChildrenTokenResponse>()
+
     //opsional
     val parentProfiResponse = MutableLiveData<ParentProfileResponse>()
+
     //end
     val parentUrlResponse = MutableLiveData<ParentUrlResponse>()
     val deleteUrlResponse = MutableLiveData<DeleteUrlResponse>()
@@ -32,23 +35,23 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val childrenUrlResponse = MutableLiveData<List<UrlResponse>>()
 
     //register parent
-    fun registerParent(name: String, email: String, password: String){
+    fun registerParent(name: String, email: String, password: String) {
         _isLoading.value = true
         val registP = ApiConfig.getApiService().registParent(name, password, email)
-        registP.enqueue(object: Callback<ParentRegisterResponse>{
+        registP.enqueue(object : Callback<ParentRegisterResponse> {
             override fun onResponse(
                 call: Call<ParentRegisterResponse>,
                 response: Response<ParentRegisterResponse>
             ) {
                 _isLoading.value = false
-                if (response.isSuccessful){
+                if (response.isSuccessful) {
                     registerParenResponse.postValue(response.body())
                     Log.d("Success", response.body().toString())
                     _isIntent.value = true
                     _message.value = response.body()?.message
                 } else {
-                    _message.value = response.message()
-                    Log.d("Failed", response.message())
+                    val jsonObject = JSONObject(response.errorBody()?.charStream()?.readText())
+                    _message.value = jsonObject.getString("message")
                 }
             }
 
@@ -70,14 +73,14 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 response: Response<ParentLoginResponse>
             ) {
                 _isLoading.value = false
-                if (response.isSuccessful){
+                if (response.isSuccessful) {
                     loginParentResponse.postValue(response.body())
                     Log.d("Success", response.body().toString())
                     _isIntent.value = true
                     _message.value = "Login Success"
                 } else {
-                    _message.value = response.message()
-                    Log.d("Failed", response.message())
+                    val jsonObject = JSONObject(response.errorBody()?.charStream()?.readText())
+                    _message.value = jsonObject.getString("message")
                 }
             }
 
@@ -90,10 +93,10 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     //get login parent
-    fun getParentLogin():LiveData<ParentLoginResponse> = loginParentResponse
+    fun getParentLogin(): LiveData<ParentLoginResponse> = loginParentResponse
 
     //token parent
-    fun tokenParent(id: String, accessToken: String){
+    fun tokenParent(id: String, accessToken: String) {
         _isLoading.value = true
         val getTokenP = ApiConfig.getApiService().getTokenParent(id, accessToken)
         getTokenP.enqueue(object : Callback<ParentTokenResponse> {
@@ -102,13 +105,14 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 response: Response<ParentTokenResponse>
             ) {
                 _isLoading.value = false
-                if (response.isSuccessful){
+                if (response.isSuccessful) {
                     tokenParentResponse.postValue(response.body())
                     Log.d("Success", response.body().toString())
                     _isIntent.value = true
                     _message.value = "Get Token Success"
                 } else {
-                    _message.value = response.message()
+                    val jsonObject = JSONObject(response.errorBody()?.charStream()?.readText())
+                    _message.value = jsonObject.getString("message")
                 }
             }
 
@@ -121,10 +125,10 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     //get token parent
-    fun getTokenParent():LiveData<ParentTokenResponse> = tokenParentResponse
+    fun getTokenParent(): LiveData<ParentTokenResponse> = tokenParentResponse
 
     //token children
-    fun tokenChildren(accessToken: String){
+    fun tokenChildren(accessToken: String) {
         _isLoading.value = true
         val getTokenP = ApiConfig.getApiService().tokenChildren(accessToken)
         getTokenP.enqueue(object : Callback<ChildrenTokenResponse> {
@@ -133,13 +137,14 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 response: Response<ChildrenTokenResponse>
             ) {
                 _isLoading.value = false
-                if (response.isSuccessful){
+                if (response.isSuccessful) {
                     tokenChildrenResponse.postValue(response.body())
                     Log.d("Success", response.body().toString())
                     _isIntent.value = true
                     _message.value = response.body()?.message
                 } else {
-                    _message.value = response.message()
+                    val jsonObject = JSONObject(response.errorBody()?.charStream()?.readText())
+                    _message.value = jsonObject.getString("message")
                 }
             }
 
@@ -155,7 +160,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     fun getTokenChildren(): LiveData<ChildrenTokenResponse> = tokenChildrenResponse
 
     //opsional (profile parent)
-    fun profilParent(id: String, accessToken: String){
+    fun profilParent(id: String, accessToken: String) {
         _isLoading.value = true
         val getProfilP = ApiConfig.getApiService().getProfilParent(id, accessToken)
         getProfilP.enqueue(object : Callback<ParentProfileResponse> {
@@ -164,13 +169,14 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 response: Response<ParentProfileResponse>
             ) {
                 _isLoading.value = false
-                if (response.isSuccessful){
+                if (response.isSuccessful) {
                     parentProfiResponse.postValue(response.body())
                     Log.d("Success", response.body().toString())
                     _isIntent.value = true
                     _message.value = response.body()?.name
                 } else {
-                    _message.value = response.message()
+                    val jsonObject = JSONObject(response.errorBody()?.charStream()?.readText())
+                    _message.value = jsonObject.getString("message")
                 }
             }
 
@@ -186,7 +192,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     fun getProfilParent(): LiveData<ParentProfileResponse> = parentProfiResponse
 
     //set url parent
-    fun setUrlParent(id: String, url: String, lock: Boolean, accessToken: String){
+    fun setUrlParent(id: String, url: String, lock: Boolean, accessToken: String) {
         _isLoading.value = true
         val setUrl = ApiConfig.getApiService().setBlockUrl(id, url, lock, accessToken)
         setUrl.enqueue(object : Callback<ParentUrlResponse> {
@@ -195,13 +201,14 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 response: Response<ParentUrlResponse>
             ) {
                 _isLoading.value = false
-                if (response.isSuccessful){
+                if (response.isSuccessful) {
                     parentUrlResponse.postValue(response.body())
                     Log.d("Success", response.body().toString())
                     _isIntent.value = true
-                    _message.value = response.body()?.message
+                    _message.value = "Success"
                 } else {
-                    _message.value = response.message()
+                    val jsonObject = JSONObject(response.errorBody()?.charStream()?.readText())
+                    _message.value = jsonObject.getString("message")
                 }
             }
 
@@ -222,11 +229,12 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 response: Response<List<UrlResponse>>
             ) {
                 _isLoading.value = false
-                if (response.isSuccessful){
+                if (response.isSuccessful) {
                     childrenUrlResponse.postValue(response.body())
                     Log.d("Success", response.body().toString())
                 } else {
-                    _message.value = response.message()
+                    val jsonObject = JSONObject(response.errorBody()?.charStream()?.readText())
+                    _message.value = jsonObject.getString("message")
                 }
             }
 
@@ -239,29 +247,5 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     //get data url
     fun getDataUrl(): LiveData<List<UrlResponse>> = childrenUrlResponse
-
-//    //delete data Url
-//    fun deleteDataUrl(id: String, url: String, accessToken: String){
-//        val urlGet = ApiConfig.getApiService().deleteUrl(id, url, accessToken)
-//        urlGet.enqueue(object : Callback<DeleteUrlResponse> {
-//            override fun onResponse(
-//                call: Call<DeleteUrlResponse>,
-//                response: Response<DeleteUrlResponse>
-//            ) {
-//                _isLoading.value = false
-//                if (response.isSuccessful){
-//                    deleteUrlResponse.postValue(response.body())
-//                    Log.d("Success", response.body().toString())
-//                } else {
-//                    _message.value = response.message()
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<DeleteUrlResponse>, t: Throwable) {
-//                _isLoading.value = false
-//                Log.d("Failure", t.message.toString())
-//            }
-//        })
-//    }
 
 }

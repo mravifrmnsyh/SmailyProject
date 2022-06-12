@@ -14,11 +14,13 @@ class ParentLoginPref(context: Context) {
         editor.putString(ACCESSTOKEN, accessToken)
         editor.apply()
     }
+
     fun setIdChild(idChild: String) {
         editor.putString(IDCHILDREN, idChild)
         editor.apply()
     }
-    fun getUser(): ParentLoginModel{
+
+    fun getUser(): ParentLoginModel {
         val model = ParentLoginModel()
         model.id = pref.getString(ID, "").toString()
         model.name = pref.getString(NAME, "").toString()
@@ -27,12 +29,13 @@ class ParentLoginPref(context: Context) {
         model.idChildren = pref.getString(IDCHILDREN, "").toString()
         return model
     }
+
     fun delUser() {
         editor.clear()
         editor.apply()
     }
 
-    companion object{
+    companion object {
         const val PARENT_LOGIN = "parent_login"
         const val ID = "id"
         const val NAME = "name"
