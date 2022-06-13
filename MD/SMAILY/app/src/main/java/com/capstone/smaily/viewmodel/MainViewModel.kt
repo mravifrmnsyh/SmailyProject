@@ -30,7 +30,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     //end
     val parentUrlResponse = MutableLiveData<ParentUrlResponse>()
-    val deleteUrlResponse = MutableLiveData<DeleteUrlResponse>()
+    val childAppResponse = MutableLiveData<AppResponse>()
 
     val childrenUrlResponse = MutableLiveData<List<UrlResponse>>()
 
@@ -248,4 +248,31 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     //get data url
     fun getDataUrl(): LiveData<List<UrlResponse>> = childrenUrlResponse
 
+    //set blok app
+    fun setAppChildren(id: String, app: String, lock: Boolean, accessToken: String){
+        _isLoading.value = true
+        val setUrl = ApiConfig.getApiService().setBlockApp(id, app, lock, accessToken)
+        setUrl.enqueue(object : Callback<AppResponse> {
+            override fun onResponse(
+                call: Call<AppResponse>,
+                response: Response<AppResponse>
+            ) {
+                _isLoading.value = false
+                if (response.isSuccessful) {
+                    childAppResponse.postValue(response.body())
+                    Log.d("Success", response.body().toString())
+                    _isIntent.value = true
+                    _message.value = "Success"
+                } else {
+                    val jsonObject = JSONObject(response.errorBody()?.charStream()?.readText())
+                    _message.value = jsonObject.getString("message")
+                }
+            }
+
+            override fun onFailure(call: Call<AppResponse>, t: Throwable) {
+                _isLoading.value = false
+                Log.d("Failure", t.message.toString())
+            }
+        })
+    }
 }

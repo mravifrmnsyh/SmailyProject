@@ -65,4 +65,19 @@ interface ApiService {
         @Field("url") url: String,
         @Header("x-access-token") token: String
     ): Call<DeleteUrlResponse>
+
+    @FormUrlEncoded
+    @PUT("user/{id}/lock/app")
+    fun setBlockApp(
+        @Path("id") id: String,
+        @Field("app") app: String,
+        @Field("lock") lock: Boolean,
+        @Header("x-access-token") token: String
+    ): Call<AppResponse>
+
+    @GET("children/{id}/lock/app")
+    suspend fun getBlockApp(
+        @Path("id") id: String,
+        @Header("x-access-token") token: String
+    ): List<ParentAppResponse>
 }

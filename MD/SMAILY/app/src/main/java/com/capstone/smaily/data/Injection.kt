@@ -8,7 +8,8 @@ object Injection {
     fun provideRepository(context: Context): UrlRepository {
         val apiService = ApiConfig.getApiService()
         val idChild = ParentLoginPref(context).getUser().idChildren.toString()
+        val idParent = ParentLoginPref(context).getUser().id.toString()
         val token = ParentLoginPref(context).getUser().accesstoken.toString()
-        return UrlRepository(apiService, idChild, token)
+        return UrlRepository(apiService, idParent, idChild, token)
     }
 }

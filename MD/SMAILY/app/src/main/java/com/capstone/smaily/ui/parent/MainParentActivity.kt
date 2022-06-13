@@ -52,7 +52,7 @@ class MainParentActivity : AppCompatActivity() {
         }
         binding.apply {
             blockLink.setOnClickListener{ startActivity(Intent(this@MainParentActivity, BlokLinkParentActivity::class.java)) }
-            blockApp.setOnClickListener { showToast("block app") }
+            blockApp.setOnClickListener { startActivity(Intent(this@MainParentActivity, BlockAppActivity::class.java)) }
         }
     }
 

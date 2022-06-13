@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.lifecycle.*
 import com.capstone.smaily.data.Injection
 import com.capstone.smaily.data.UrlRepository
+import com.capstone.smaily.response.ParentAppResponse
 import com.capstone.smaily.response.UrlResponse
 import kotlinx.coroutines.launch
 
@@ -11,9 +12,18 @@ class UrlViewModel(private val urlRepository: UrlRepository) : ViewModel() {
     private val _url = MutableLiveData<List<UrlResponse>>()
     var url: LiveData<List<UrlResponse>> = _url
 
+    private val _app = MutableLiveData<List<ParentAppResponse>>()
+    var app: LiveData<List<ParentAppResponse>> = _app
+
     fun getUrl() {
         viewModelScope.launch {
             _url.postValue(urlRepository.getUrl())
+        }
+    }
+
+    fun getApp(){
+        viewModelScope.launch {
+            _app.postValue(urlRepository.getApp())
         }
     }
 }
